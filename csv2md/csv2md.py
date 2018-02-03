@@ -1,8 +1,9 @@
 import sys
+import csv
 
 
 def csv_to_table(file, delimiter=',', quotechar='"'):
-    pass
+    return list(csv.reader(file, delimiter=delimiter, quotechar=quotechar))
 
 
 def table_to_md(table):
