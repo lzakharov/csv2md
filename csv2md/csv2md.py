@@ -26,16 +26,3 @@ def table_to_md(table):
     md_table.insert(1, '| ' + ' | '.join(['-' * width for width in table_widths]) + ' |')
 
     return '\n'.join(md_table)
-
-
-def main(args):
-    if not args:
-        print(table_to_md(csv_to_table(sys.stdin)))
-    else:
-        for file in args:
-            with open(file) as f:
-                print(table_to_md(csv_to_table(sys.stdin)))
-
-
-if __name__ == '__main__':
-    main(sys.argv[1:])

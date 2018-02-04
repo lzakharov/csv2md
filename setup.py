@@ -16,5 +16,10 @@ setup(
     author_email='l.j.zakharov@gmail.com',
     url='https://github.com/lzakharov/csv2md',
     license=license,
-    packages=find_packages(exclude=('tests', 'docs'))
+    packages=find_packages(exclude=('tests', 'docs')),
+    entry_points={
+        'console_scripts': [
+            'csv2md = csv2md.__main__:main'
+        ]
+    }
 )
