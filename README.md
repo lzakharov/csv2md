@@ -65,6 +65,14 @@ Markdown table:
 | 1996 | Jeep  | Grand Cherokee             | MUST SELL! air, moon roof, loaded | 4799.00 |
 
 
+## Running Tests
+
+To run the tests, enter:
+
+```commandline
+nosetest
+```
+
 
 ## Issue tracker
 Please report any bugs and enhancement ideas using the csv2md issue tracker:
