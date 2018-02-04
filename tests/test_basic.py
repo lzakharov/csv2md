@@ -41,9 +41,10 @@ class BasicTestSuit(unittest.TestCase):
     def test_table_to_md_on_normal_table(self):
         self.assertEqual(csv2md.table_to_md(normal_table), normal_md)
 
-    @patch('sys.stdin', normal_csv)
+    @patch('sys.argv', ['csv2md'])
+    @patch('sys.stdin', io.StringIO(normal_csv))
     @patch('sys.stdout', new_callable=io.StringIO)
-    def test_main_on_one_normal_csv_file(self, mock_stdout):
+    def test_main_on_stdin(self, mock_stdout):
         csv2md.main()
         self.assertEqual(mock_stdout.getvalue().strip(), normal_md)
 
