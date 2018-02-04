@@ -32,10 +32,10 @@ def table_to_md(table):
 def main():
     parser = argparse.ArgumentParser(description='Parse CSV files into Markdown tables')
     parser.add_argument('files', metavar='CSV_FILES', type=argparse.FileType('r'), nargs='*',
-                        default=None, help='CSV files to parse')
+                        help='CSV files to parse')
 
     args = parser.parse_args()
-    if args.files is None:
+    if not args.files:
         print(table_to_md(csv_to_table(sys.stdin)))
     else:
         for file in args.files:
