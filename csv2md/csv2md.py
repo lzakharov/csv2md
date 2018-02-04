@@ -23,7 +23,12 @@ def table_to_md(table):
 
 
 def main(args):
-    pass
+    if not args:
+        print(table_to_md(csv_to_table(sys.stdin)))
+    else:
+        for file in args:
+            with open(file) as f:
+                print(table_to_md(csv_to_table(sys.stdin)))
 
 
 if __name__ == '__main__':
