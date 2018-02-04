@@ -3,7 +3,13 @@ import csv
 
 
 def csv_to_table(file, delimiter=',', quotechar='"'):
-    return list(csv.reader(file, delimiter=delimiter, quotechar=quotechar))
+    try:
+        return list(csv.reader(file, delimiter=delimiter, quotechar=quotechar))
+    except csv.Error as e:
+        print(e, file=sys.stderr)
+        print('Something went wrong...')
+        print('Exiting...')
+        sys.exit(1)
 
 
 def get_table_widths(table):
