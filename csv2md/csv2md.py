@@ -12,7 +12,14 @@ def get_table_widths(table):
 
 
 def table_to_md(table):
-    pass
+    table_widths = get_table_widths(table)
+
+    md_table = ['| ' + ' | '.join([cell.ljust(width) for cell, width in zip(row, table_widths)]) + ' |'
+                for row in table]
+
+    md_table.insert(1, '| ' + ' | '.join(['-' * width for width in table_widths]) + ' |')
+
+    return '\n'.join(md_table)
 
 
 def main(args):
