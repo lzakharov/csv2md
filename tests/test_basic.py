@@ -1,5 +1,7 @@
 from .context import csv2md
 import unittest
+from unittest.mock import patch
+import os
 import io
 
 
@@ -38,6 +40,12 @@ class BasicTestSuit(unittest.TestCase):
 
     def test_table_to_md_on_normal_table(self):
         self.assertEqual(csv2md.table_to_md(normal_table), normal_md)
+
+    @patch('sys.argv', [None, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'resources/normal.csv')])
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_main_on_one_normal_csv_file(self, mock_stdout):
+        csv2md.main()
+        self.assertEqual(mock_stdout.getvalue().strip(), normal_md)
 
 
 if __name__ == '__main__':
