@@ -17,6 +17,8 @@ normal_table = [
     ['1996', 'Jeep', 'Grand Cherokee', 'MUST SELL! air, moon roof, loaded', '4799.00']
 ]
 
+normal_table_widths = [4, 5, 26, 33, 7]
+
 normal_md = (
     '| year | make  | model                      | description                       | price   |\n'
     '| ---- | ----- | -------------------------- | --------------------------------- | ------- |\n'
@@ -30,6 +32,9 @@ class BasicTestSuit(unittest.TestCase):
     """Basic test cases."""
     def test_csv_to_table_on_normal_csv(self):
         self.assertEqual(csv2md.csv_to_table(io.StringIO(normal_csv)), normal_table)
+
+    def test_get_table_widths_on_normal_table(self):
+        self.assertEqual(csv2md.get_table_widths(normal_table), normal_table_widths)
 
     def test_table_to_md_on_normal_table(self):
         self.assertEqual(csv2md.table_to_md(normal_table), normal_md)
