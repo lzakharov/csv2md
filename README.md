@@ -1,4 +1,4 @@
-# csv2md [![Build Status](https://travis-ci.org/lzakharov/csv2md.svg?branch=master)](https://travis-ci.org/lzakharov/csv2md)
+# csv2md [![Build Status](https://travis-ci.org/lzakharov/csv2md.svg?branch=dev)](https://travis-ci.org/lzakharov/csv2md)
 
 Command line tool for converting CSV files into Markdown tables.
 
