@@ -47,7 +47,7 @@ class BasicTestSuit(unittest.TestCase):
         csv2md.main()
         self.assertEqual(mock_stdout.getvalue().strip(), normal_md)
 
-    @patch('sys.argv', [None, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'resources/normal.csv')])
+    @patch('sys.argv', ['csv2md', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'resources', 'normal.csv')])
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_main_on_one_normal_csv_file(self, mock_stdout):
         csv2md.main()
