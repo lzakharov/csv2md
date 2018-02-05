@@ -4,11 +4,16 @@ Command line tool for converting CSV files into Markdown tables.
 
 ## Installation
 
-csv2md can be installed using pip:
+csv2md can be installed from source:
 
 ```commandline
 # type in project directory
-python3 -m pip install .
+python setup.py install
+```
+
+Or with `pip` from PyPI:
+```commandline
+pip install csv2md
 ```
 
 ### Requirements
