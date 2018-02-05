@@ -9,7 +9,14 @@ normal_csv = (
     'year,make,model,description,price\n'
     '1997,Ford,E350,"ac, abs, moon",3000.00\n'
     '1999,Chevy,"Venture «Extended Edition»","",4900.00\n'
-    '1996,Jeep,Grand Cherokee,"MUST SELL! air, moon roof, loaded",4799.00\n'
+    '1996,Jeep,Grand Cherokee,"MUST SELL! air, moon roof, loaded",4799.00'
+)
+
+normal_csv_with_special_delimiter = (
+    'year;make;model;description;price\n'
+    '1997;Ford;E350;"ac, abs, moon";3000.00\n'
+    '1999;Chevy;"Venture «Extended Edition»";"";4900.00\n'
+    '1996;Jeep;Grand Cherokee;"MUST SELL! air, moon roof, loaded";4799.00'
 )
 
 normal_table = [
@@ -44,13 +51,13 @@ class BasicTestSuit(unittest.TestCase):
     @patch('sys.argv', ['csv2md'])
     @patch('sys.stdin', io.StringIO(normal_csv))
     @patch('sys.stdout', new_callable=io.StringIO)
-    def test_main_on_stdin(self, mock_stdout):
+    def test_parsing_from_stdin(self, mock_stdout):
         csv2md.main()
         self.assertEqual(mock_stdout.getvalue().strip(), normal_md)
 
     @patch('sys.argv', ['csv2md', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'resources', 'normal.csv')])
     @patch('sys.stdout', new_callable=io.StringIO)
-    def test_main_on_one_normal_csv_file(self, mock_stdout):
+    def test_parsing_from_one_normal_csv_file(self, mock_stdout):
         csv2md.main()
         self.assertEqual(mock_stdout.getvalue().strip(), normal_md)
 
