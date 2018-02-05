@@ -1,14 +1,19 @@
-# csv2md  [![Build Status](https://travis-ci.org/lzakharov/csv2md.svg?branch=master)](https://travis-ci.org/lzakharov/csv2md) [![Coverage Status](https://codecov.io/gh/lzakharov/csv2md/branch/master/graph/badge.svg)](https://codecov.io/gh/lzakharov/csv2md)
+# csv2md  [![PyPI version](https://badge.fury.io/py/csv2md.svg)](https://badge.fury.io/py/csv2md) [![Build Status](https://travis-ci.org/lzakharov/csv2md.svg?branch=master)](https://travis-ci.org/lzakharov/csv2md) [![Coverage Status](https://codecov.io/gh/lzakharov/csv2md/branch/master/graph/badge.svg)](https://codecov.io/gh/lzakharov/csv2md)
 
 Command line tool for converting CSV files into Markdown tables.
 
 ## Installation
 
-csv2md can be installed using pip:
+csv2md can be installed from source:
 
 ```commandline
 # type in project directory
-python3 -m pip install .
+python setup.py install
+```
+
+Or with `pip` from PyPI:
+```commandline
+pip install csv2md
 ```
 
 ### Requirements
