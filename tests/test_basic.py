@@ -12,7 +12,7 @@ normal_csv = (
     '1996,Jeep,Grand Cherokee,"MUST SELL! air, moon roof, loaded",4799.00'
 )
 
-normal_csv_with_special_delimiter = (
+normal_csv_with_semicolon_delimiter = (
     'year;make;model;description;price\n'
     '1997;Ford;E350;"ac, abs, moon";3000.00\n'
     '1999;Chevy;"Venture «Extended Edition»";"";4900.00\n'
@@ -52,6 +52,13 @@ class BasicTestSuit(unittest.TestCase):
     @patch('sys.stdin', io.StringIO(normal_csv))
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_parsing_from_stdin(self, mock_stdout):
+        csv2md.main()
+        self.assertEqual(mock_stdout.getvalue().strip(), normal_md)
+
+    @patch('sys.argv', ['csv2md', '-d;'])
+    @patch('sys.stdin', io.StringIO(normal_csv_with_semicolon_delimiter))
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_parsing_from_stdin_with_special_delimiter(self, mock_stdout):
         csv2md.main()
         self.assertEqual(mock_stdout.getvalue().strip(), normal_md)
 

@@ -33,10 +33,12 @@ def main():
     parser = argparse.ArgumentParser(description='Parse CSV files into Markdown tables')
     parser.add_argument('files', metavar='CSV_FILES', type=argparse.FileType('r'), nargs='*',
                         help='CSV files to parse')
-
+    parser.add_argument('-d', '--delimiter', metavar='delimiter', type=str, nargs='?', default=',',
+                        help='delimiter character')
     args = parser.parse_args()
+
     if not args.files:
-        print(table_to_md(csv_to_table(sys.stdin)))
+        print(table_to_md(csv_to_table(sys.stdin, delimiter=args.delimiter)))
     else:
         for file in args.files:
             print(table_to_md(csv_to_table(file)))
