@@ -64,25 +64,27 @@ Markdown table:
 | 1999 | Chevy | Venture «Extended Edition» |                                   | 4900.00 |
 | 1996 | Jeep  | Grand Cherokee             | MUST SELL! air, moon roof, loaded | 4799.00 |
 
+You can also specify delimiter and quotation characters (see [Help](https://github.com/lzakharov/csv2md#help)). 
+
 ## Help
 
 To view help run `csv2md -h`:
 
 ```commandline
-usage: csv2md.py [-h] [-d [delimiter]] [-q [quotechar]]
-                 [CSV_FILES [CSV_FILES ...]].
+usage: csv2md.py [-h] [-d [DELIMITER]] [-q [QUOTECHAR]]
+                 [CSV_FILE [CSV_FILE ...]]
 
-Parse CSV files into Markdown tables
+Parse CSV files into Markdown tables.
 
 positional arguments:
-  CSV_FILES             CSV files to parse
+  CSV_FILE              One or more CSV files to parse
 
 optional arguments:
   -h, --help            show this help message and exit
-  -d [delimiter], --delimiter [delimiter]
-                        delimiter character
-  -q [quotechar], --quotechar [quotechar]
-                        quotation character
+  -d [DELIMITER], --delimiter [DELIMITER]
+                        delimiter character. Default is ','
+  -q [QUOTECHAR], --quotechar [QUOTECHAR]
+                        quotation character. Default is '"'
 ```
 
 ## Running Tests
