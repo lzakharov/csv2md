@@ -71,8 +71,7 @@ You can also specify delimiter and quotation characters (see [Help](https://gith
 To view help run `csv2md -h`:
 
 ```commandline
-usage: csv2md.py [-h] [-d [DELIMITER]] [-q [QUOTECHAR]]
-                 [CSV_FILE [CSV_FILE ...]]
+usage: csv2md.py [-h] [-d DELIMITER] [-q QUOTECHAR] [CSV_FILE [CSV_FILE ...]]
 
 Parse CSV files into Markdown tables.
 
@@ -81,9 +80,9 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  -d [DELIMITER], --delimiter [DELIMITER]
+  -d DELIMITER, --delimiter DELIMITER
                         delimiter character. Default is ','
-  -q [QUOTECHAR], --quotechar [QUOTECHAR]
+  -q QUOTECHAR, --quotechar QUOTECHAR
                         quotation character. Default is '"'
 ```
 

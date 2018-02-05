@@ -33,9 +33,9 @@ def main():
     parser = argparse.ArgumentParser(description='Parse CSV files into Markdown tables.')
     parser.add_argument('files', metavar='CSV_FILE', type=argparse.FileType('r'), nargs='*',
                         help='One or more CSV files to parse')
-    parser.add_argument('-d', '--delimiter', metavar='DELIMITER', type=str, nargs='?', default=',',
+    parser.add_argument('-d', '--delimiter', metavar='DELIMITER', type=str, default=',',
                         help='delimiter character. Default is \',\'')
-    parser.add_argument('-q', '--quotechar', metavar='QUOTECHAR', type=str, nargs='?', default='"',
+    parser.add_argument('-q', '--quotechar', metavar='QUOTECHAR', type=str, default='"',
                         help='quotation character. Default is \'"\'')
     args = parser.parse_args()
 
