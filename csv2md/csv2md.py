@@ -30,13 +30,13 @@ def table_to_md(table):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Parse CSV files into Markdown tables')
-    parser.add_argument('files', metavar='CSV_FILES', type=argparse.FileType('r'), nargs='*',
-                        help='CSV files to parse')
-    parser.add_argument('-d', '--delimiter', metavar='delimiter', type=str, nargs='?', default=',',
-                        help='delimiter character')
-    parser.add_argument('-q', '--quotechar', metavar='quotechar', type=str, nargs='?', default='"',
-                        help='quotation character')
+    parser = argparse.ArgumentParser(description='Parse CSV files into Markdown tables.')
+    parser.add_argument('files', metavar='CSV_FILE', type=argparse.FileType('r'), nargs='*',
+                        help='One or more CSV files to parse')
+    parser.add_argument('-d', '--delimiter', metavar='DELIMITER', type=str, nargs='?', default=',',
+                        help='delimiter character. Default is \',\'')
+    parser.add_argument('-q', '--quotechar', metavar='QUOTECHAR', type=str, nargs='?', default='"',
+                        help='quotation character. Default is \'"\'')
     args = parser.parse_args()
 
     if not args.files:

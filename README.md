@@ -64,6 +64,26 @@ Markdown table:
 | 1999 | Chevy | Venture «Extended Edition» |                                   | 4900.00 |
 | 1996 | Jeep  | Grand Cherokee             | MUST SELL! air, moon roof, loaded | 4799.00 |
 
+## Help
+
+To view help run `csv2md -h`:
+
+```commandline
+usage: csv2md.py [-h] [-d [delimiter]] [-q [quotechar]]
+                 [CSV_FILES [CSV_FILES ...]].
+
+Parse CSV files into Markdown tables
+
+positional arguments:
+  CSV_FILES             CSV files to parse
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -d [delimiter], --delimiter [delimiter]
+                        delimiter character
+  -q [quotechar], --quotechar [quotechar]
+                        quotation character
+```
 
 ## Running Tests
 
@@ -72,7 +92,6 @@ To run the tests, enter:
 ```commandline
 nosetest
 ```
-
 
 ## Issue tracker
 Please report any bugs and enhancement ideas using the csv2md issue tracker:
