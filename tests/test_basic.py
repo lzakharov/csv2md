@@ -19,6 +19,13 @@ normal_csv_with_semicolon_delimiter = (
     '1996;Jeep;Grand Cherokee;"MUST SELL! air, moon roof, loaded";4799.00'
 )
 
+normal_csv_with_pipe_as_quotechar = (
+    'year,make,model,description,price\n'
+    '1997,Ford,E350,|ac, abs, moon|,3000.00\n'
+    '1999,Chevy,|Venture «Extended Edition»|,||,4900.00\n'
+    '1996,Jeep,Grand Cherokee,|MUST SELL! air, moon roof, loaded|,4799.00'
+)
+
 normal_table = [
     ['year', 'make', 'model', 'description', 'price'],
     ['1997', 'Ford', 'E350', 'ac, abs, moon', '3000.00'],
@@ -59,6 +66,13 @@ class BasicTestSuit(unittest.TestCase):
     @patch('sys.stdin', io.StringIO(normal_csv_with_semicolon_delimiter))
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_parsing_from_stdin_with_special_delimiter(self, mock_stdout):
+        csv2md.main()
+        self.assertEqual(mock_stdout.getvalue().strip(), normal_md)
+
+    @patch('sys.argv', ['csv2md', '-q|'])
+    @patch('sys.stdin', io.StringIO(normal_csv_with_pipe_as_quotechar))
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_parsing_from_stdin_with_special_quotechar(self, mock_stdout):
         csv2md.main()
         self.assertEqual(mock_stdout.getvalue().strip(), normal_md)
 

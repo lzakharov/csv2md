@@ -35,13 +35,15 @@ def main():
                         help='CSV files to parse')
     parser.add_argument('-d', '--delimiter', metavar='delimiter', type=str, nargs='?', default=',',
                         help='delimiter character')
+    parser.add_argument('-q', '--quotechar', metavar='quotechar', type=str, nargs='?', default='"',
+                        help='quotation character')
     args = parser.parse_args()
 
     if not args.files:
-        print(table_to_md(csv_to_table(sys.stdin, delimiter=args.delimiter)))
+        print(table_to_md(csv_to_table(sys.stdin, delimiter=args.delimiter, quotechar=args.quotechar)))
     else:
         for file in args.files:
-            print(table_to_md(csv_to_table(file)))
+            print(table_to_md(csv_to_table(file, delimiter=args.delimiter, quotechar=args.quotechar)))
 
 
 if __name__ == '__main__':
