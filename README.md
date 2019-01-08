@@ -96,7 +96,7 @@ optional arguments:
 To run the tests, enter:
 
 ```commandline
-nosetest
+nosetests
 ```
 
 ## Issue tracker
