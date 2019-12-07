@@ -43,6 +43,14 @@ normal_md = (
     '| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air, moon roof, loaded | 4799.00 |'
 )
 
+normal_md_w_alignment = (
+    '| year | make  | model                      | description                       | price   |\n'
+    '| :--: | :---: | -------------------------: | --------------------------------- | ------: |\n'
+    '| 1997 | Ford  | E350                       | ac, abs, moon                     | 3000.00 |\n'
+    '| 1999 | Chevy | Venture «Extended Edition» |                                   | 4900.00 |\n'
+    '| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air, moon roof, loaded | 4799.00 |'
+)
+
 
 class BasicTestSuit(unittest.TestCase):
     """Basic test cases."""
@@ -81,6 +89,12 @@ class BasicTestSuit(unittest.TestCase):
     def test_parsing_from_one_normal_csv_file(self, mock_stdout):
         csv2md.main()
         self.assertEqual(mock_stdout.getvalue().strip(), normal_md)
+
+    @patch('sys.argv', ['csv2md', '--center-fields', '1,2', '--right-fields', '3,5', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'resources', 'normal.csv')])
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_parsing_from_one_normal_csv_file_with_alignment(self, mock_stdout):
+        csv2md.main()
+        self.assertEqual(mock_stdout.getvalue().strip(), normal_md_w_alignment)
 
 
 if __name__ == '__main__':

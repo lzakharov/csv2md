@@ -18,13 +18,26 @@ def get_table_widths(table):
     return list(map(max, zip(*table_lengths)))
 
 
-def table_to_md(table):
+def table_to_md(table, center_fields=set(), right_fields=set()):
     table_widths = get_table_widths(table)
 
     md_table = ['| ' + ' | '.join([cell.ljust(width) for cell, width in zip(row, table_widths)]) + ' |'
                 for row in table]
 
-    md_table.insert(1, '| ' + ' | '.join(['-' * width for width in table_widths]) + ' |')
+    header_seps = ['-' * width for width in table_widths]
+    for sep in range(1, len(header_seps) + 1):
+        if sep in center_fields:
+            sep_chars = list(header_seps[sep-1])
+            sep_chars[0] = ':'
+            sep_chars[-1] = ':'
+            header_seps[sep-1] = ''.join(sep_chars)
+        elif sep in right_fields:
+            sep_chars = list(header_seps[sep-1])
+            sep_chars[-1] = ':'
+            header_seps[sep-1] = ''.join(sep_chars)
+
+
+    md_table.insert(1, '| ' + ' | '.join(header_seps) + ' |')
 
     return '\n'.join(md_table)
 
@@ -37,13 +50,37 @@ def main():
                         help='delimiter character. Default is \',\'')
     parser.add_argument('-q', '--quotechar', metavar='QUOTECHAR', type=str, default='"',
                         help='quotation character. Default is \'"\'')
+    parser.add_argument('--center-fields', metavar='CENTER_FIELDS', type=str, default='',
+                        help='fields to center aligned')
+    parser.add_argument('--right-fields', metavar='RIGHT_FIELDS', type=str, default='',
+                        help='fields to right aligned')
     args = parser.parse_args()
+    
+    center_fields = set()
+    if args.center_fields:
+        center_fields = set((int(f) for f in args.center_fields.split(',')))
+    right_fields = set()
+    if args.right_fields:
+        right_fields = set((int(f) for f in args.right_fields.split(',')))
 
     if not args.files:
-        print(table_to_md(csv_to_table(sys.stdin, delimiter=args.delimiter, quotechar=args.quotechar)))
+        print(table_to_md(
+            csv_to_table(
+                sys.stdin,
+                delimiter=args.delimiter,
+                quotechar=args.quotechar),
+            center_fields=center_fields,
+            right_fields=right_fields))
+
     else:
-        for file in args.files:
-            print(table_to_md(csv_to_table(file, delimiter=args.delimiter, quotechar=args.quotechar)))
+        for fh in args.files:
+            print(table_to_md(
+                csv_to_table(
+                    fh,
+                    delimiter=args.delimiter,
+                    quotechar=args.quotechar),
+                center_fields=center_fields,
+                right_fields=right_fields))
 
 
 if __name__ == '__main__':
