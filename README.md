@@ -69,14 +69,17 @@ Markdown table:
 | 1999 | Chevy | Venture «Extended Edition» |                                   | 4900.00 |
 | 1996 | Jeep  | Grand Cherokee             | MUST SELL! air, moon roof, loaded | 4799.00 |
 
-You can also specify delimiter and quotation characters (see [Help](https://github.com/lzakharov/csv2md#help)). 
+You can also specify delimiter, quotation characters and alignment (see [Help](https://github.com/lzakharov/csv2md#help)). 
 
 ## Help
 
 To view help run `csv2md -h`:
 
 ```commandline
-usage: csv2md.py [-h] [-d DELIMITER] [-q QUOTECHAR] [CSV_FILE [CSV_FILE ...]]
+usage: csv2md [-h] [-d DELIMITER] [-q QUOTECHAR]
+              [-c [CENTER_ALIGNED_COLUMNS [CENTER_ALIGNED_COLUMNS ...]]]
+              [-r [RIGHT_ALIGNED_COLUMNS [RIGHT_ALIGNED_COLUMNS ...]]]
+              [CSV_FILE [CSV_FILE ...]]
 
 Parse CSV files into Markdown tables.
 
@@ -89,6 +92,10 @@ optional arguments:
                         delimiter character. Default is ','
   -q QUOTECHAR, --quotechar QUOTECHAR
                         quotation character. Default is '"'
+  -c [CENTER_ALIGNED_COLUMNS [CENTER_ALIGNED_COLUMNS ...]], --center-aligned-columns [CENTER_ALIGNED_COLUMNS [CENTER_ALIGNED_COLUMNS ...]]
+                        column numbers with center alignment (from zero)
+  -r [RIGHT_ALIGNED_COLUMNS [RIGHT_ALIGNED_COLUMNS ...]], --right-aligned-columns [RIGHT_ALIGNED_COLUMNS [RIGHT_ALIGNED_COLUMNS ...]]
+                        column numbers with right alignment (from zero)
 ```
 
 ## Running Tests
