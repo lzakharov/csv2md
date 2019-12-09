@@ -1,3 +1,9 @@
+# JetBrains
+.idea/
+
+# OS X
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -99,6 +105,3 @@ ENV/
 
 # mypy
 .mypy_cache/
-
-# PyCharm
-.idea
