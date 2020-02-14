@@ -10,6 +10,13 @@ normal_csv = (
     '1996,Jeep,Grand Cherokee,"MUST SELL! air, moon roof, loaded",4799.00'
 )
 
+normal_csv_with_custom_delimiter = (
+    'year;make;model;description;price\n'
+    '1997;Ford;E350;"ac, abs, moon";3000.00\n'
+    '1999;Chevy;"Venture «Extended Edition»";"";4900.00\n'
+    '1996;Jeep;Grand Cherokee;"MUST SELL! air, moon roof, loaded";4799.00'
+)
+
 normal_cells = [
     ['year', 'make', 'model', 'description', 'price'],
     ['1997', 'Ford', 'E350', 'ac, abs, moon', '3000.00'],
@@ -55,3 +62,11 @@ class TestTable(TestCase):
         actual = Table.parse_csv(io.StringIO(normal_csv))
         self.assertEqual(expected_cells, actual.cells)
         self.assertEqual(expected_widths, actual.widths)
+
+    def test_parse_csv_with_custom_delimiter(self):
+        expected_cells = normal_cells
+        expected_widths = normal_widths
+        actual = Table.parse_csv(io.StringIO(normal_csv_with_custom_delimiter), delimiter=";")
+        self.assertEqual(expected_cells, actual.cells)
+        self.assertEqual(expected_widths, actual.widths)
+
