@@ -19,12 +19,12 @@ def main():
     args = parser.parse_args()
 
     if not args.files:
-        table = Table.parse_csv(sys.stdin)
+        table = Table.parse_csv(sys.stdin, args.delimiter, args.quotechar)
         print(table.markdown(args.center_aligned_columns, args.right_aligned_columns))
         return
 
     for file in args.files:
-        table = Table.parse_csv(file)
+        table = Table.parse_csv(file, args.delimiter, args.quotechar)
         print(table.markdown(args.center_aligned_columns, args.right_aligned_columns))
 
 
