@@ -40,6 +40,17 @@ Generate Markdown table from standard input:
 csv2md
 ```
 
+You can also use it right inside your code, for example:
+
+```python
+from csv2md.table import Table
+
+with open("input.csv") as f:
+    table = Table.parse_csv(f)
+
+print(table.markdown())
+```
+
 ### Examples
 
 Input file: `simple.csv`
