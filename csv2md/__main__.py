@@ -16,16 +16,18 @@ def main():
                         type=int, default=[], help='column numbers with center alignment (from zero)')
     parser.add_argument('-r', '--right-aligned-columns', metavar='RIGHT_ALIGNED_COLUMNS', nargs='*',
                         type=int, default=[], help='column numbers with right alignment (from zero)')
+    parser.add_argument('-H', '--no-header-row', dest='no_header_row', action='store_true',
+                        help='specify that the input CSV file has no header row. Will create default headers in Excel format (a,b,c,...)')
     args = parser.parse_args()
 
     if not args.files:
         table = Table.parse_csv(sys.stdin, args.delimiter, args.quotechar)
-        print(table.markdown(args.center_aligned_columns, args.right_aligned_columns))
+        print(table.markdown(args.center_aligned_columns, args.right_aligned_columns, args.no_header_row))
         return
 
     for file in args.files:
         table = Table.parse_csv(file, args.delimiter, args.quotechar)
-        print(table.markdown(args.center_aligned_columns, args.right_aligned_columns))
+        print(table.markdown(args.center_aligned_columns, args.right_aligned_columns, args.no_header_row))
 
 
 if __name__ == '__main__':

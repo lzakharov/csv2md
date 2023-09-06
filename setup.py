@@ -9,7 +9,7 @@ with open('LICENSE') as f:
 
 setup(
     name='csv2md',
-    version='1.1.2',
+    version='1.2.0',
     description='Command line tool for converting CSV files into Markdown tables.',
     long_description=readme,
     author='Lev Zakharov',
