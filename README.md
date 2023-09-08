@@ -87,26 +87,24 @@ You can also specify delimiter, quotation characters and alignment (see [Help](h
 To view help run `csv2md -h`:
 
 ```commandline
-usage: csv2md [-h] [-d DELIMITER] [-q QUOTECHAR]
-              [-c [CENTER_ALIGNED_COLUMNS [CENTER_ALIGNED_COLUMNS ...]]]
-              [-r [RIGHT_ALIGNED_COLUMNS [RIGHT_ALIGNED_COLUMNS ...]]]
-              [CSV_FILE [CSV_FILE ...]]
+usage: csv2md [-h] [-d DELIMITER] [-q QUOTECHAR] [-c [CENTER_ALIGNED_COLUMNS ...]] [-r [RIGHT_ALIGNED_COLUMNS ...]] [-H] [CSV_FILE ...]
 
 Parse CSV files into Markdown tables.
 
 positional arguments:
   CSV_FILE              One or more CSV files to parse
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -d DELIMITER, --delimiter DELIMITER
                         delimiter character. Default is ','
   -q QUOTECHAR, --quotechar QUOTECHAR
                         quotation character. Default is '"'
-  -c [CENTER_ALIGNED_COLUMNS [CENTER_ALIGNED_COLUMNS ...]], --center-aligned-columns [CENTER_ALIGNED_COLUMNS [CENTER_ALIGNED_COLUMNS ...]]
+  -c [CENTER_ALIGNED_COLUMNS ...], --center-aligned-columns [CENTER_ALIGNED_COLUMNS ...]
                         column numbers with center alignment (from zero)
-  -r [RIGHT_ALIGNED_COLUMNS [RIGHT_ALIGNED_COLUMNS ...]], --right-aligned-columns [RIGHT_ALIGNED_COLUMNS [RIGHT_ALIGNED_COLUMNS ...]]
+  -r [RIGHT_ALIGNED_COLUMNS ...], --right-aligned-columns [RIGHT_ALIGNED_COLUMNS ...]
                         column numbers with right alignment (from zero)
+  -H, --no-header-row   specify that the input CSV file has no header row. Will create default headers in Excel format (a,b,c,...)
 ```
 
 ## Running Tests
@@ -126,4 +124,4 @@ Feel free to also ask questions on the tracker.
 
 ## License
 
-Copyright (c) 2018 Lev Zakharov. Licensed under [the MIT License](https://raw.githubusercontent.com/lzakharov/csv2md/master/LICENSE).
+Copyright (c) 2023 Lev Zakharov. Licensed under [the MIT License](https://raw.githubusercontent.com/lzakharov/csv2md/master/LICENSE).

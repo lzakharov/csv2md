@@ -42,8 +42,23 @@ normal_md_with_alignment = (
     '| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air, moon roof, loaded | 4799.00 |'
 )
 
+normal_md_with_default_columns = (
+    '| a    | b     | c                          | d                                 | e       |\n'
+    '| ---- | ----- | -------------------------- | --------------------------------- | ------- |\n'
+    '| year | make  | model                      | description                       | price   |\n'
+    '| 1997 | Ford  | E350                       | ac, abs, moon                     | 3000.00 |\n'
+    '| 1999 | Chevy | Venture «Extended Edition» |                                   | 4900.00 |\n'
+    '| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air, moon roof, loaded | 4799.00 |'
+)
+
 
 class TestTable(TestCase):
+    def test_markdown_empty_table(self):
+        expected = ''
+        table = Table([])
+        actual = table.markdown()
+        self.assertEqual(expected, actual)
+
     def test_markdown(self):
         expected = normal_md
         table = Table(normal_cells)
@@ -54,6 +69,12 @@ class TestTable(TestCase):
         expected = normal_md_with_alignment
         table = Table(normal_cells)
         actual = table.markdown([1, 2], [4])
+        self.assertEqual(expected, actual)
+
+    def test_markdown_with_default_columns(self):
+        expected = normal_md_with_default_columns
+        table = Table(normal_cells)
+        actual = table.markdown(no_header_row=True)
         self.assertEqual(expected, actual)
 
     def test_parse_csv(self):
@@ -70,3 +91,8 @@ class TestTable(TestCase):
         self.assertEqual(expected_cells, actual.cells)
         self.assertEqual(expected_widths, actual.widths)
 
+    def test_make_default_headers(self):
+        expected = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+                    'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
+                    'y', 'z', 'aa', 'bb', 'cc', 'dd', 'ee', 'ff', 'gg')
+        self.assertEqual(Table.make_default_headers(33), expected)
