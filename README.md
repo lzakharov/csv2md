@@ -28,6 +28,12 @@ Generate Markdown table from CSV file:
 csv2md table.csv
 ```
 
+Generate Markdown table from TSV file:
+
+```commandline
+csv2md -d $'\t' table.tsv
+```
+
 Generate Markdown tables from list of CSV files:
 
 ```commandline
@@ -105,14 +111,6 @@ options:
   -r [RIGHT_ALIGNED_COLUMNS ...], --right-aligned-columns [RIGHT_ALIGNED_COLUMNS ...]
                         column numbers with right alignment (from zero)
   -H, --no-header-row   specify that the input CSV file has no header row. Will create default headers in Excel format (a,b,c,...)
-```
-
-## TSV Files
-
-To convert TSV (Tab-separated values) files, you can specify a tab character as delimiter using the following command:
-
-```commandline
-csv2md -d $'\t' [TSV_FILE ...]
 ```
 
 ## Running Tests
