@@ -28,6 +28,12 @@ Generate Markdown table from CSV file:
 csv2md table.csv
 ```
 
+Generate Markdown table from TSV file:
+
+```commandline
+csv2md -d $'\t' table.tsv
+```
+
 Generate Markdown tables from list of CSV files:
 
 ```commandline
