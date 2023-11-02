@@ -107,6 +107,14 @@ options:
   -H, --no-header-row   specify that the input CSV file has no header row. Will create default headers in Excel format (a,b,c,...)
 ```
 
+## TSV Files
+
+To convert TSV (Tab-separated values) files, you can specify a tab character as delimiter using the following command:
+
+```commandline
+csv2md -d $'\t' [TSV_FILE ...]
+```
+
 ## Running Tests
 
 To run the tests, enter:
