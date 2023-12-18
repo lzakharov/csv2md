@@ -1,4 +1,4 @@
-# csv2md  [![Build Status](https://app.travis-ci.com/lzakharov/csv2md.svg?branch=master)](https://app.travis-ci.com/lzakharov/csv2md) [![Coverage Status](https://codecov.io/gh/lzakharov/csv2md/branch/dev/graph/badge.svg)](https://codecov.io/gh/lzakharov/csv2md)
+# csv2md  [![codecov](https://codecov.io/gh/lzakharov/csv2md/graph/badge.svg?token=bqqWCT4BNo)](https://codecov.io/gh/lzakharov/csv2md)
 
 Command line tool for converting CSV files into Markdown tables.
 
@@ -127,7 +127,3 @@ Please report any bugs and enhancement ideas using the csv2md issue tracker:
 https://github.com/lzakharov/csv2md/issues
 
 Feel free to also ask questions on the tracker.
-
-## License
-
-Copyright (c) 2023 Lev Zakharov. Licensed under [the MIT License](https://raw.githubusercontent.com/lzakharov/csv2md/master/LICENSE).
