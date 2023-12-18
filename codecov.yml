@@ -1,0 +1,2 @@
+ignore:
+  - "csv2md/__main__.py"
