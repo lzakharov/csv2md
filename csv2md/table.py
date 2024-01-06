@@ -37,8 +37,15 @@ class Table:
         return '\n'.join(rows)
 
     @staticmethod
-    def parse_csv(file, delimiter=',', quotechar='"'):
-        return Table(list(csv.reader(file, delimiter=delimiter, quotechar=quotechar)))
+    def parse_csv(file, delimiter=',', quotechar='"', columns=None):
+        reader = csv.reader(file, delimiter=delimiter, quotechar=quotechar)
+
+        if columns is None:
+            cells = list(reader)
+        else:
+            cells = [[row[i] for i in columns if 0 <= i < len(row)] for row in reader]
+
+        return Table(cells)
 
     @staticmethod
     def make_default_headers(n):
