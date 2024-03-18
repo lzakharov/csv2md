@@ -93,7 +93,10 @@ You can also specify delimiter, quotation characters and alignment (see [Help](h
 To view help run `csv2md -h`:
 
 ```commandline
-usage: csv2md [-h] [-d DELIMITER] [-q QUOTECHAR] [-c [CENTER_ALIGNED_COLUMNS ...]] [-r [RIGHT_ALIGNED_COLUMNS ...]] [-H] [CSV_FILE ...]
+usage: csv2md [-h] [-d DELIMITER] [-q QUOTECHAR] [-C COLUMNS]
+              [-c [CENTER_ALIGNED_COLUMNS ...]]
+              [-r [RIGHT_ALIGNED_COLUMNS ...]] [-H]
+              [CSV_FILE ...]
 
 Parse CSV files into Markdown tables.
 
@@ -106,11 +109,17 @@ options:
                         delimiter character. Default is ','
   -q QUOTECHAR, --quotechar QUOTECHAR
                         quotation character. Default is '"'
+  -C COLUMNS, --columns COLUMNS
+                        comma-separated list of column indices or ranges (from
+                        zero) to be processed, e.g. "0,3-5,7". Indices out of
+                        range will be ignored
   -c [CENTER_ALIGNED_COLUMNS ...], --center-aligned-columns [CENTER_ALIGNED_COLUMNS ...]
                         column numbers with center alignment (from zero)
   -r [RIGHT_ALIGNED_COLUMNS ...], --right-aligned-columns [RIGHT_ALIGNED_COLUMNS ...]
                         column numbers with right alignment (from zero)
-  -H, --no-header-row   specify that the input CSV file has no header row. Will create default headers in Excel format (a,b,c,...)
+  -H, --no-header-row   specify that the input CSV file has no header row.
+                        Will create default headers in Excel format
+                        (a,b,c,...)
 ```
 
 ## Running Tests
