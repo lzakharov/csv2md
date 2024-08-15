@@ -42,9 +42,8 @@ class Table:
             return ''
 
         # Retrive the header columns
-        width = len(self.cells[0])
         if no_header_row:
-            header_row = self.make_default_headers(width)
+            header_row = tuple('' for _ in range(len(self.cells[0])))
         else:
             header_row = self.cells[0]
 
@@ -57,12 +56,15 @@ class Table:
                 heading_lvl = '#' * heading_lvl
             else:
                 heading_lvl = '#'
+        
+        def format_label(s):
+            return f'**{s}**: ' if s else ''
 
         def as_heading(lvl, label, val):
-            return f'\n{lvl} **{label}**: {val}\n'
+            return f'\n{lvl} {format_label(label)}{val}\n'
 
         def as_bullet(label, val):
-            return f'\n- **{label}**: {val}'
+            return f'\n- {format_label(label)}{val}'
 
         def row_to_lines(row):
             lines = ['\n']
@@ -81,6 +83,7 @@ class Table:
             for row in self.cells:
                 lines.extend(row_to_lines(row))
         else:
+            # Header exists, skip the header row
             for row in self.cells[1:]:
                 lines.extend(row_to_lines(row))
 
