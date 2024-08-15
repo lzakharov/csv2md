@@ -60,6 +60,63 @@ normal_md_with_default_columns = (
     '| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air, moon roof, loaded | 4799.00 |'
 )
 
+normal_mdheadings = (
+    '\n'
+    '\n'
+    '## **make**: Ford\n'
+    '\n'
+    '- **year**: 1997\n'
+    '- **model**: E350\n'
+    '- **description**: ac, abs, moon\n'
+    '- **price**: 3000.00\n'
+    '\n'
+    '## **make**: Chevy\n'
+    '\n'
+    '- **year**: 1999\n'
+    '- **model**: Venture «Extended Edition»\n'
+    '- **description**: \n'
+    '- **price**: 4900.00\n'
+    '\n'
+    '## **make**: Jeep\n'
+    '\n'
+    '- **year**: 1996\n'
+    '- **model**: Grand Cherokee\n'
+    '- **description**: MUST SELL! air, moon roof, loaded\n'
+    '- **price**: 4799.00'
+)
+
+normal_mdheadings_with_noheader = (
+    "\n"
+    "\n"
+    "## make\n"
+    "\n"
+    "- year\n"
+    "- model\n"
+    "- description\n"
+    "- price\n"
+    "\n"
+    "## Ford\n"
+    "\n"
+    "- 1997\n"
+    "- E350\n"
+    "- ac, abs, moon\n"
+    "- 3000.00\n"
+    "\n"
+    "## Chevy\n"
+    "\n"
+    "- 1999\n"
+    "- Venture «Extended Edition»\n"
+    "- \n"
+    "- 4900.00\n"
+    "\n"
+    "## Jeep\n"
+    "\n"
+    "- 1996\n"
+    "- Grand Cherokee\n"
+    "- MUST SELL! air, moon roof, loaded\n"
+    "- 4799.00"
+)
+
 
 class TestTable(TestCase):
     def test_markdown_empty_table(self):
@@ -84,6 +141,24 @@ class TestTable(TestCase):
         expected = normal_md_with_default_columns
         table = Table(normal_cells)
         actual = table.markdown(no_header_row=True)
+        self.assertEqual(expected, actual)
+
+    def test_mdheadings_empty_table(self):
+        expected = ''
+        table = Table([])
+        actual = table.markdown_headings()
+        self.assertEqual(expected, actual)
+
+    def test_mdheadings(self):
+        expected = normal_mdheadings
+        table = Table(normal_cells)
+        actual = table.markdown_headings()
+        self.assertEqual(expected, actual)
+
+    def test_mdheadings_noheader(self):
+        expected = normal_mdheadings_with_noheader
+        table = Table(normal_cells)
+        actual = table.markdown_headings(no_header_row=True)
         self.assertEqual(expected, actual)
 
     def test_parse_csv(self):
