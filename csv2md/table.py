@@ -61,19 +61,19 @@ class Table:
             return f'**{s}**: ' if s else ''
 
         def as_heading(lvl, label, val):
-            return f'\n{lvl} {format_label(label)}{val}\n'
+            return f'{lvl} {format_label(label)}{val}\n'
 
         def as_bullet(label, val):
             return f'\n- {format_label(label)}{val}'
 
         def row_to_lines(row):
-            lines = ['\n']
             # Add the heading_col's value as a markdown heading
-            lines.append(as_heading(heading_lvl, heading_col, row[heading_index]))
+            lines = [as_heading(heading_lvl, heading_col, row[heading_index])]
             # Add all other column values as a bulletted list
             for col_idx, col_val in enumerate(row):
                 if col_idx != heading_index:
                     lines.append(as_bullet(header_row[col_idx], col_val))
+            lines.append('\n\n')
 
             return lines
 
