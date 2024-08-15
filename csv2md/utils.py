@@ -1,6 +1,6 @@
 import string
 
-def column_letter(index):
+def column_letter(index) -> str:
     """Returns the column letter in Excel format."""
     letters = string.ascii_lowercase
     count = len(letters)

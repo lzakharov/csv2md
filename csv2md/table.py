@@ -1,10 +1,11 @@
 import csv
+from typing import Any
 
 from .utils import column_letter
 
 
 class Table:
-    def __init__(self, cells):
+    def __init__(self, cells: list[list[Any]]):
         self.cells = cells
         self.widths = list(map(max, zip(*[list(map(len, row)) for row in cells])))
 
