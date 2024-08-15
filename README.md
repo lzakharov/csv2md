@@ -1,6 +1,6 @@
 # csv2md  [![codecov](https://codecov.io/gh/lzakharov/csv2md/graph/badge.svg?token=bqqWCT4BNo)](https://codecov.io/gh/lzakharov/csv2md)
 
-Command line tool for converting CSV files into Markdown tables.
+Command line tool for converting CSV files into Markdown tables or headings.
 
 ## Installation
 
@@ -57,6 +57,25 @@ with open("input.csv") as f:
 print(table.markdown())
 ```
 
+You can also generate headings instead of a table by including the flag `-O` or `--output-headings`, for example:
+
+```commandline
+csv2md table.csv -O
+```
+
+will output something like:
+
+```md
+## **Col-A Row-1 Label**: Col-A Row-1 Value
+
+- **Col-B Row-1 Label**: Col-B Row-1 Value
+- **Col-C Row-1 Label**: Col-C Row-1 Value
+
+## **Col-A Row-2 Label**: Col-A Row 2 Value
+
+...and so on...
+```
+
 ### Examples
 
 Input file: `simple.csv`
@@ -96,6 +115,7 @@ To view help run `csv2md -h`:
 usage: csv2md [-h] [-d DELIMITER] [-q QUOTECHAR] [-C COLUMNS]
               [-c [CENTER_ALIGNED_COLUMNS ...]]
               [-r [RIGHT_ALIGNED_COLUMNS ...]] [-H]
+              [-O] [-t HEADING_COL_INDEX] [-l HEADING_LEVEL]
               [CSV_FILE ...]
 
 Parse CSV files into Markdown tables.
@@ -120,6 +140,12 @@ options:
   -H, --no-header-row   specify that the input CSV file has no header row.
                         Will create default headers in Excel format
                         (a,b,c,...)
+  -O, --output-headings
+                        specify that the output should be headings
+  -t HEADING_COL_INDEX, --heading-column HEADING_COL_INDEX
+                        index of the column to use as the top-level heading of each row
+  -l HEADING_LEVEL, --heading-level HEADING_LEVEL
+                        heading level for the top-level heading of each row
 ```
 
 ## Running Tests
