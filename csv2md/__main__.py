@@ -22,6 +22,12 @@ def main():
                         type=int, default=[], help='column numbers with right alignment (from zero)')
     parser.add_argument('-H', '--no-header-row', dest='no_header_row', action='store_true',
                         help='specify that the input CSV file has no header row. Will create default headers in Excel format (a,b,c,...)')
+    parser.add_argument('-F', '--format-headings', dest='output_headings', action='store_true',
+                        help='specify that the output should be headings')
+    parser.add_argument('-t', '--heading-column', dest='heading_col_index', type=str, default=0,
+                        help='index of the column to use as the top-level heading of each row')
+    parser.add_argument('-l', '--heading-level', dest='heading_level', type=int, default=2,
+                        help='heading level for the top-level heading of each row')
     args = parser.parse_args()
 
     try:
@@ -31,7 +37,10 @@ def main():
 
     for file in [sys.stdin] if not args.files else args.files:
         table = Table.parse_csv(file, args.delimiter, args.quotechar, columns)
-        print(table.markdown(args.center_aligned_columns, args.right_aligned_columns, args.no_header_row))
+        if args.output_headings:
+            print(table.markdown_headings(args.heading_col_index, args.heading_level, args.no_header_row))
+        else:
+            print(table.markdown(args.center_aligned_columns, args.right_aligned_columns, args.no_header_row))
 
 
 def parse_columns(columns):
