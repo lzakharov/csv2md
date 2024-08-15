@@ -37,6 +37,55 @@ class Table:
 
         return '\n'.join(rows)
 
+    def markdown_headings(self, heading_index=0, heading_lvl: str | int = 2, no_header_row=False):
+        if len(self.cells) == 0:
+            return ''
+
+        # Retrive the header columns
+        width = len(self.cells[0])
+        if no_header_row:
+            header_row = self.make_default_headers(width)
+        else:
+            header_row = self.cells[0]
+
+        # Retrieve the value of the heading column to be used for each row
+        heading_col = header_row[heading_index]
+
+        # Level for the heading to be used for each row
+        if isinstance(heading_lvl, int):
+            if heading_lvl > 0:
+                heading_lvl = '#' * heading_lvl
+            else:
+                heading_lvl = '#'
+
+        def as_heading(lvl, label, val):
+            return f'\n{lvl} **{label}**: {val}\n'
+
+        def as_bullet(label, val):
+            return f'\n- **{label}**: {val}'
+
+        def row_to_lines(row):
+            lines = ['\n']
+            # Add the heading_col's value as a markdown heading
+            lines.append(as_heading(heading_lvl, heading_col, row[heading_index]))
+            # Add all other column values as a bulletted list
+            for col_idx, col_val in enumerate(row):
+                if col_idx != heading_index:
+                    lines.append(as_bullet(header_row[col_idx], col_val))
+
+            return lines
+
+        # Create the lines for each row
+        lines: list[str] = []
+        if no_header_row:
+            for row in self.cells:
+                lines.extend(row_to_lines(row))
+        else:
+            for row in self.cells[1:]:
+                lines.extend(row_to_lines(row))
+
+        return ''.join(lines)
+
     @staticmethod
     def parse_csv(file, delimiter=',', quotechar='"', columns=None):
         reader = csv.reader(file, delimiter=delimiter, quotechar=quotechar)
