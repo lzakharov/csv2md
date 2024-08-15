@@ -22,7 +22,7 @@ def main():
                         type=int, default=[], help='column numbers with right alignment (from zero)')
     parser.add_argument('-H', '--no-header-row', dest='no_header_row', action='store_true',
                         help='specify that the input CSV file has no header row. Will create default headers in Excel format (a,b,c,...)')
-    parser.add_argument('-F', '--format-headings', dest='output_headings', action='store_true',
+    parser.add_argument('-O', '--output-headings', dest='output_headings', action='store_true',
                         help='specify that the output should be headings')
     parser.add_argument('-t', '--heading-column', dest='heading_col_index', type=str, default=0,
                         help='index of the column to use as the top-level heading of each row')
