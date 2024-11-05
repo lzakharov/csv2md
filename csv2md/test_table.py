@@ -7,57 +7,57 @@ normal_csv = (
     'year,make,model,description,price\n'
     '1997,Ford,E350,"ac, abs, moon",3000.00\n'
     '1999,Chevy,"Venture «Extended Edition»","",4900.00\n'
-    '1996,Jeep,Grand Cherokee,"MUST SELL! air, moon roof, loaded",4799.00'
+    '1996,Jeep,Grand Cherokee,"MUST SELL! air | moon roof | loaded",4799.00'
 )
 
 normal_csv_with_custom_delimiter = (
     'year;make;model;description;price\n'
     '1997;Ford;E350;"ac, abs, moon";3000.00\n'
     '1999;Chevy;"Venture «Extended Edition»";"";4900.00\n'
-    '1996;Jeep;Grand Cherokee;"MUST SELL! air, moon roof, loaded";4799.00'
+    '1996;Jeep;Grand Cherokee;"MUST SELL! air | moon roof | loaded";4799.00'
 )
 
 normal_cells = [
     ['year', 'make', 'model', 'description', 'price'],
     ['1997', 'Ford', 'E350', 'ac, abs, moon', '3000.00'],
     ['1999', 'Chevy', 'Venture «Extended Edition»', '', '4900.00'],
-    ['1996', 'Jeep', 'Grand Cherokee', 'MUST SELL! air, moon roof, loaded', '4799.00']
+    ['1996', 'Jeep', 'Grand Cherokee', 'MUST SELL! air | moon roof | loaded', '4799.00']
 ]
 
-normal_widths = [4, 5, 26, 33, 7]
+normal_widths = [4, 5, 26, 35, 7]
 
 filtered_columns_cells = [
     ['year', 'model', 'description'],
     ['1997', 'E350', 'ac, abs, moon'],
     ['1999', 'Venture «Extended Edition»', ''],
-    ['1996', 'Grand Cherokee', 'MUST SELL! air, moon roof, loaded']
+    ['1996', 'Grand Cherokee', 'MUST SELL! air | moon roof | loaded']
 ]
 
-filtered_columns_widths = [4, 26, 33]
+filtered_columns_widths = [4, 26, 35]
 
 normal_md = (
-    '| year | make  | model                      | description                       | price   |\n'
-    '| ---- | ----- | -------------------------- | --------------------------------- | ------- |\n'
-    '| 1997 | Ford  | E350                       | ac, abs, moon                     | 3000.00 |\n'
-    '| 1999 | Chevy | Venture «Extended Edition» |                                   | 4900.00 |\n'
-    '| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air, moon roof, loaded | 4799.00 |'
+    '| year | make  | model                      | description                           | price   |\n'
+    '| ---- | ----- | -------------------------- | ------------------------------------- | ------- |\n'
+    '| 1997 | Ford  | E350                       | ac, abs, moon                         | 3000.00 |\n'
+    '| 1999 | Chevy | Venture «Extended Edition» |                                       | 4900.00 |\n'
+    '| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air \| moon roof \| loaded | 4799.00 |'
 )
 
 normal_md_with_alignment = (
-    '| year | make  | model                      | description                       | price   |\n'
-    '| ---- | :---: | :------------------------: | --------------------------------- | ------: |\n'
-    '| 1997 | Ford  | E350                       | ac, abs, moon                     | 3000.00 |\n'
-    '| 1999 | Chevy | Venture «Extended Edition» |                                   | 4900.00 |\n'
-    '| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air, moon roof, loaded | 4799.00 |'
+    '| year | make  | model                      | description                           | price   |\n'
+    '| ---- | :---: | :------------------------: | ------------------------------------- | ------: |\n'
+    '| 1997 | Ford  | E350                       | ac, abs, moon                         | 3000.00 |\n'
+    '| 1999 | Chevy | Venture «Extended Edition» |                                       | 4900.00 |\n'
+    '| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air \| moon roof \| loaded | 4799.00 |'
 )
 
 normal_md_with_default_columns = (
-    '| a    | b     | c                          | d                                 | e       |\n'
-    '| ---- | ----- | -------------------------- | --------------------------------- | ------- |\n'
-    '| year | make  | model                      | description                       | price   |\n'
-    '| 1997 | Ford  | E350                       | ac, abs, moon                     | 3000.00 |\n'
-    '| 1999 | Chevy | Venture «Extended Edition» |                                   | 4900.00 |\n'
-    '| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air, moon roof, loaded | 4799.00 |'
+    '| a    | b     | c                          | d                                     | e       |\n'
+    '| ---- | ----- | -------------------------- | ------------------------------------- | ------- |\n'
+    '| year | make  | model                      | description                           | price   |\n'
+    '| 1997 | Ford  | E350                       | ac, abs, moon                         | 3000.00 |\n'
+    '| 1999 | Chevy | Venture «Extended Edition» |                                       | 4900.00 |\n'
+    '| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air \| moon roof \| loaded | 4799.00 |'
 )
 
 
