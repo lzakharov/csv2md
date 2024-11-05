@@ -9,8 +9,9 @@ with open('LICENSE') as f:
 
 setup(
     name='csv2md',
-    version='1.3.0',
+    version='1.4.0',
     description='Command line tool for converting CSV files into Markdown tables.',
+    long_description_content_type='text/markdown',
     long_description=readme,
     author='Lev Zakharov',
     author_email='l.j.zakharov@gmail.com',
