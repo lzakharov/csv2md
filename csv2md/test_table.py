@@ -40,7 +40,7 @@ normal_md = (
     '| ---- | ----- | -------------------------- | ------------------------------------- | ------- |\n'
     '| 1997 | Ford  | E350                       | ac, abs, moon                         | 3000.00 |\n'
     '| 1999 | Chevy | Venture «Extended Edition» |                                       | 4900.00 |\n'
-    '| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air \| moon roof \| loaded | 4799.00 |'
+    '| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air \\| moon roof \\| loaded | 4799.00 |'
 )
 
 normal_md_with_alignment = (
@@ -48,7 +48,7 @@ normal_md_with_alignment = (
     '| ---- | :---: | :------------------------: | ------------------------------------- | ------: |\n'
     '| 1997 | Ford  | E350                       | ac, abs, moon                         | 3000.00 |\n'
     '| 1999 | Chevy | Venture «Extended Edition» |                                       | 4900.00 |\n'
-    '| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air \| moon roof \| loaded | 4799.00 |'
+    '| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air \\| moon roof \\| loaded | 4799.00 |'
 )
 
 normal_md_with_default_columns = (
@@ -57,7 +57,7 @@ normal_md_with_default_columns = (
     '| year | make  | model                      | description                           | price   |\n'
     '| 1997 | Ford  | E350                       | ac, abs, moon                         | 3000.00 |\n'
     '| 1999 | Chevy | Venture «Extended Edition» |                                       | 4900.00 |\n'
-    '| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air \| moon roof \| loaded | 4799.00 |'
+    '| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air \\| moon roof \\| loaded | 4799.00 |'
 )
 
 
