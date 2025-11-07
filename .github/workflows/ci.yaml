@@ -1,0 +1,43 @@
+name: CI
+
+on: [push]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install ruff
+        run: pipx install ruff
+      - name: Lint code
+        run: ruff check --output-format=github --target-version=py39
+      - name: Check code formatting
+        run: ruff format --diff --target-version=py39
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install pytest
+        run: |
+          pip install pytest pytest-cov
+      - name: Run tests
+        run: |
+          pytest . -v --cov
