@@ -1,4 +1,4 @@
-# csv2md  [![codecov](https://codecov.io/gh/lzakharov/csv2md/graph/badge.svg?token=bqqWCT4BNo)](https://codecov.io/gh/lzakharov/csv2md)
+# csv2md
 
 Command line tool for converting CSV files into Markdown tables.
 
