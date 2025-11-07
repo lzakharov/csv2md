@@ -1,5 +1,6 @@
 import string
 
+
 def column_letter(index):
     """Returns the column letter in Excel format."""
     letters = string.ascii_lowercase

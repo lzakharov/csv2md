@@ -86,7 +86,7 @@ Markdown table:
 | 1999 | Chevy | Venture «Extended Edition» |                                   | 4900.00 |
 | 1996 | Jeep  | Grand Cherokee             | MUST SELL! air, moon roof, loaded | 4799.00 |
 
-You can also specify delimiter, quotation characters and alignment (see [Help](https://github.com/lzakharov/csv2md#help)). 
+You can also specify delimiter, quotation characters and alignment (see [Help](https://github.com/lzakharov/csv2md#help)).
 
 ## Help
 
@@ -127,7 +127,7 @@ options:
 To run the tests, enter:
 
 ```commandline
-nosetest
+pytest . -v
 ```
 
 ## Issue tracker
