@@ -17,6 +17,15 @@ normal_csv_with_custom_delimiter = (
     '1996;Jeep;Grand Cherokee;"MUST SELL! air | moon roof | loaded";4799.00'
 )
 
+csv_with_empty_lines = (
+    "year,make,model,description,price\n"
+    '1997,Ford,E350,"ac, abs, moon",3000.00\n'
+    '1999,Chevy,"Venture «Extended Edition»","",4900.00\n'
+    "\n"
+    '1996,Jeep,Grand Cherokee,"MUST SELL! air | moon roof | loaded",4799.00\n'
+    "\n"
+)
+
 normal_cells = [
     ["year", "make", "model", "description", "price"],
     ["1997", "Ford", "E350", "ac, abs, moon", "3000.00"],
@@ -40,6 +49,21 @@ filtered_columns_cells = [
 ]
 
 filtered_columns_widths = [4, 26, 35]
+
+cells_with_empty_rows = [
+    ["year", "make", "model", "description", "price"],
+    ["1997", "Ford", "E350", "ac, abs, moon", "3000.00"],
+    ["1999", "Chevy", "Venture «Extended Edition»", "", "4900.00"],
+    [],
+    [
+        "1996",
+        "Jeep",
+        "Grand Cherokee",
+        "MUST SELL! air | moon roof | loaded",
+        "4799.00",
+    ],
+    [],
+]
 
 normal_md = (
     "| year | make  | model                      | description                           | price   |\n"
@@ -66,6 +90,16 @@ normal_md_with_default_columns = (
     "| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air \\| moon roof \\| loaded | 4799.00 |"
 )
 
+md_with_empty_rows = (
+    "| year | make  | model                      | description                           | price   |\n"
+    "| ---- | ----- | -------------------------- | ------------------------------------- | ------- |\n"
+    "| 1997 | Ford  | E350                       | ac, abs, moon                         | 3000.00 |\n"
+    "| 1999 | Chevy | Venture «Extended Edition» |                                       | 4900.00 |\n"
+    "|  |\n"
+    "| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air \\| moon roof \\| loaded | 4799.00 |\n"
+    "|  |"
+)
+
 
 class TestTable(TestCase):
     def test_markdown_empty_table(self):
@@ -77,6 +111,12 @@ class TestTable(TestCase):
     def test_markdown(self):
         expected = normal_md
         table = Table(normal_cells)
+        actual = table.markdown()
+        self.assertEqual(expected, actual)
+
+    def test_markdown_with_empty_rows(self):
+        expected = md_with_empty_rows
+        table = Table(cells_with_empty_rows)
         actual = table.markdown()
         self.assertEqual(expected, actual)
 
@@ -121,6 +161,13 @@ class TestTable(TestCase):
         actual = Table.parse_csv(
             io.StringIO(normal_csv), columns=[-10, -1, 0, 2, 3, 5, 10, 100]
         )
+        self.assertEqual(expected_cells, actual.cells)
+        self.assertEqual(expected_widths, actual.widths)
+
+    def test_parse_csv_with_empty_lines(self):
+        expected_cells = cells_with_empty_rows
+        expected_widths = normal_widths
+        actual = Table.parse_csv(io.StringIO(csv_with_empty_lines))
         self.assertEqual(expected_cells, actual.cells)
         self.assertEqual(expected_widths, actual.widths)
 
