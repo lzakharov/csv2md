@@ -46,7 +46,7 @@ class Table:
 
     @staticmethod
     def __widths(cells):
-        return list(map(max, zip(*[list(map(len, row)) for row in cells])))
+        return list(map(max, zip(*[list(map(len, row)) for row in cells if row])))
 
     @staticmethod
     def parse_csv(file, delimiter=",", quotechar='"', columns=None):
