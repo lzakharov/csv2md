@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 readme = """
 Command line tool for converting CSV files into Markdown tables.
@@ -9,7 +9,7 @@ with open("LICENSE") as f:
 
 setup(
     name="csv2md",
-    version="1.4.0",
+    version="1.5.0",
     description="Command line tool for converting CSV files into Markdown tables.",
     long_description_content_type="text/markdown",
     long_description=readme,
