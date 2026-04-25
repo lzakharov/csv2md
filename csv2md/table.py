@@ -19,6 +19,12 @@ class Table:
 
         cells = [[cell.replace("|", r"\|") for cell in row] for row in self.cells]
         widths = self.__widths(cells)
+        if right_aligned_columns is not None:
+            for column in right_aligned_columns:
+                widths[column] = max(widths[column], 2)  # -:
+        if center_aligned_columns is not None:
+            for column in center_aligned_columns:
+                widths[column] = max(widths[column], 3)  # :-:
 
         def ljust_row(row):
             return [cell.ljust(width) for cell, width in zip(row, widths)]
