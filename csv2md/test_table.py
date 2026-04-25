@@ -65,6 +65,11 @@ cells_with_empty_rows = [
     [],
 ]
 
+cells_with_narrow_columns = [
+    ["1", "2", "3", "4"],
+    ["5", "6", "7", "8"],
+]
+
 normal_md = (
     "| year | make  | model                      | description                           | price   |\n"
     "| ---- | ----- | -------------------------- | ------------------------------------- | ------- |\n"
@@ -100,6 +105,10 @@ md_with_empty_rows = (
     "|  |"
 )
 
+md_with_narrow_columns_and_alignment = (
+    "| 1   | 2 | 3  | 4 |\n| :-: | - | -: | - |\n| 5   | 6 | 7  | 8 |"
+)
+
 
 class TestTable(TestCase):
     def test_markdown_empty_table(self):
@@ -130,6 +139,12 @@ class TestTable(TestCase):
         expected = normal_md_with_default_columns
         table = Table(normal_cells)
         actual = table.markdown(no_header_row=True)
+        self.assertEqual(expected, actual)
+
+    def test_markdown_with_narrow_columns_and_alignment(self):
+        expected = md_with_narrow_columns_and_alignment
+        table = Table(cells_with_narrow_columns)
+        actual = table.markdown(center_aligned_columns=[0], right_aligned_columns=[2])
         self.assertEqual(expected, actual)
 
     def test_parse_csv(self):
