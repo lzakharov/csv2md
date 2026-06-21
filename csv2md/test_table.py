@@ -65,6 +65,19 @@ cells_with_empty_rows = [
     [],
 ]
 
+cells_with_newlines = [
+    ["year", "make", "model", "description", "price"],
+    ["1997", "Ford", "E350", "ac, abs, moon", "3000.00"],
+    ["1999", "Chevy", "Venture «Extended Edition»", "", "4900.00"],
+    [
+        "1996",
+        "Jeep",
+        "Grand Cherokee",
+        "MUST SELL! air\nmoon roof\nloaded",
+        "4799.00",
+    ],
+]
+
 cells_with_narrow_columns = [
     ["1", "2", "3", "4"],
     ["5", "6", "7", "8"],
@@ -103,6 +116,14 @@ md_with_empty_rows = (
     "|  |\n"
     "| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air \\| moon roof \\| loaded | 4799.00 |\n"
     "|  |"
+)
+
+md_with_newlines_in_cells = (
+    "| year | make  | model                      | description                           | price   |\n"
+    "| ---- | ----- | -------------------------- | ------------------------------------- | ------- |\n"
+    "| 1997 | Ford  | E350                       | ac, abs, moon                         | 3000.00 |\n"
+    "| 1999 | Chevy | Venture «Extended Edition» |                                       | 4900.00 |\n"
+    "| 1996 | Jeep  | Grand Cherokee             | MUST SELL! air<br>moon roof<br>loaded | 4799.00 |"
 )
 
 md_with_narrow_columns_and_alignment = (
@@ -145,6 +166,12 @@ class TestTable(TestCase):
         expected = md_with_narrow_columns_and_alignment
         table = Table(cells_with_narrow_columns)
         actual = table.markdown(center_aligned_columns=[0], right_aligned_columns=[2])
+        self.assertEqual(expected, actual)
+
+    def test_markdown_with_newlines_in_cells(self):
+        expected = md_with_newlines_in_cells
+        table = Table(cells_with_newlines)
+        actual = table.markdown()
         self.assertEqual(expected, actual)
 
     def test_parse_csv(self):
