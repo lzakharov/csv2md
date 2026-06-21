@@ -17,7 +17,12 @@ class Table:
         if len(self.cells) == 0:
             return ""
 
-        cells = [[cell.replace("|", r"\|") for cell in row] for row in self.cells]
+        def format_cell(cell):
+            cell = cell.replace("\n", "<br>")
+            cell = cell.replace("\r\n", "<br>")
+            return cell.replace("|", r"\|")
+
+        cells = [[format_cell(cell) for cell in row] for row in self.cells]
         widths = self.__widths(cells)
         if right_aligned_columns is not None:
             for column in right_aligned_columns:

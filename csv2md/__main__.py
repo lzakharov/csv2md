@@ -1,8 +1,8 @@
 import argparse
 import sys
 
-from .table import Table
 from .exceptions import BaseError, ColumnIdentifierError
+from .table import Table
 
 
 def main():
@@ -12,7 +12,7 @@ def main():
     parser.add_argument(
         "files",
         metavar="CSV_FILE",
-        type=argparse.FileType("r"),
+        type=str,
         nargs="*",
         help="One or more CSV files to parse",
     )
@@ -70,17 +70,15 @@ def main():
     try:
         columns = parse_columns(args.columns)
     except BaseError as e:
-        parser.error(e)
+        parser.error(str(e))
 
-    for file in [sys.stdin] if not args.files else args.files:
-        table = Table.parse_csv(file, args.delimiter, args.quotechar, columns)
-        print(
-            table.markdown(
-                args.center_aligned_columns,
-                args.right_aligned_columns,
-                args.no_header_row,
-            )
-        )
+    if not args.files:  # read from stdin
+        process_file(args, columns, sys.stdin)
+        return
+
+    for file in args.files:
+        with open(file, "r") as f:
+            process_file(args, columns, f)
 
 
 def parse_columns(columns):
@@ -105,6 +103,17 @@ def parse_columns(columns):
             result.append(column)
 
     return result
+
+
+def process_file(args, columns, file):
+    table = Table.parse_csv(file, args.delimiter, args.quotechar, columns)
+    print(
+        table.markdown(
+            args.center_aligned_columns,
+            args.right_aligned_columns,
+            args.no_header_row,
+        )
+    )
 
 
 if __name__ == "__main__":
