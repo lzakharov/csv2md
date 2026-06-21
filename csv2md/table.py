@@ -18,8 +18,8 @@ class Table:
             return ""
 
         def format_cell(cell):
-            cell = cell.replace("\n", "<br>")
             cell = cell.replace("\r\n", "<br>")
+            cell = cell.replace("\n", "<br>")
             return cell.replace("|", r"\|")
 
         cells = [[format_cell(cell) for cell in row] for row in self.cells]
