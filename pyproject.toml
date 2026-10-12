@@ -1,0 +1,45 @@
+[project]
+name = "csv2md"
+version = "1.7.1"
+description = "Command line tool for converting CSV files into Markdown tables."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Lev Zakharov", email = "l.j.zakharov@gmail.com" },
+]
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Text Processing :: Markup :: Markdown",
+]
+
+[project.urls]
+Homepage = "https://github.com/lzakharov/csv2md"
+Repository = "https://github.com/lzakharov/csv2md"
+Changelog = "https://github.com/lzakharov/csv2md/blob/master/CHANGELOG.md"
+
+[project.scripts]
+csv2md = "csv2md.__main__:main"
+
+[build-system]
+requires = ["poetry-core>=2.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+test = [
+    { include-group = "lint" },
+    "pytest>=8",
+    "pytest-cov>=5",
+]
+lint = ["ruff>=0.8"]
