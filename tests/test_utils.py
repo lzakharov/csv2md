@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from .utils import column_letter
+from csv2md.utils import column_letter
 
 
 class TestUtils(TestCase):

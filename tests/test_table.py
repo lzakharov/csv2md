@@ -1,7 +1,7 @@
 import io
 from unittest import TestCase
 
-from .table import Table
+from csv2md.table import Table
 
 normal_csv = (
     "year,make,model,description,price\n"
