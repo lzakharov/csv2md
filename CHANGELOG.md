@@ -2,7 +2,8 @@
 
 * Migrate from `setup.py` to Poetry (`pyproject.toml`)
 * Move tests from the package to the `tests/` directory
-* Drop support for Python older than 3.9
+* Drop support for Python older than 3.10
+* Handle file opening exceptions
 
 # 1.7.1 (June 21, 2026)
 
