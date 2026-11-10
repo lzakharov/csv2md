@@ -26,10 +26,12 @@ class Table:
         widths = self.__widths(cells)
         if right_aligned_columns is not None:
             for column in right_aligned_columns:
-                widths[column] = max(widths[column], 2)  # -:
+                if 0 <= column < len(widths):
+                    widths[column] = max(widths[column], 2)  # -:
         if center_aligned_columns is not None:
             for column in center_aligned_columns:
-                widths[column] = max(widths[column], 3)  # :-:
+                if 0 <= column < len(widths):
+                    widths[column] = max(widths[column], 3)  # :-:
 
         def ljust_row(row):
             return [cell.ljust(width) for cell, width in zip(row, widths)]
@@ -42,10 +44,12 @@ class Table:
 
         if right_aligned_columns is not None:
             for column in right_aligned_columns:
-                separators[column] = ("-" * (widths[column] - 1)) + ":"
+                if 0 <= column < len(widths):
+                    separators[column] = ("-" * (widths[column] - 1)) + ":"
         if center_aligned_columns is not None:
             for column in center_aligned_columns:
-                separators[column] = ":" + ("-" * (widths[column] - 2)) + ":"
+                if 0 <= column < len(widths):
+                    separators[column] = ":" + ("-" * (widths[column] - 2)) + ":"
 
         if no_header_row:
             width = len(cells[0])

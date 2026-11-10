@@ -168,6 +168,24 @@ class TestTable(TestCase):
         actual = table.markdown(center_aligned_columns=[0], right_aligned_columns=[2])
         self.assertEqual(expected, actual)
 
+    def test_markdown_ignores_out_of_range_alignment_columns(self):
+        # Like --columns, out-of-range -c/-r indices are ignored instead of
+        # raising IndexError (table.py markdown()).
+        expected = md_with_narrow_columns_and_alignment
+        table = Table(cells_with_narrow_columns)
+        actual = table.markdown(
+            center_aligned_columns=[0, 99], right_aligned_columns=[2, 100]
+        )
+        self.assertEqual(expected, actual)
+
+    def test_markdown_ignores_negative_alignment_columns(self):
+        expected = md_with_narrow_columns_and_alignment
+        table = Table(cells_with_narrow_columns)
+        actual = table.markdown(
+            center_aligned_columns=[0, -1], right_aligned_columns=[2, -2]
+        )
+        self.assertEqual(expected, actual)
+
     def test_markdown_with_newlines_in_cells(self):
         expected = md_with_newlines_in_cells
         table = Table(cells_with_newlines)
