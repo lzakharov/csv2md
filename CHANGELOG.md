@@ -1,5 +1,7 @@
 # Unreleased
 
+# 1.8.0 (November 10, 2026)
+
 * Migrate from `setup.py` to Poetry (`pyproject.toml`)
 * Move tests from the package to the `tests/` directory
 * Drop support for Python older than 3.10
