@@ -77,8 +77,17 @@ def main():
         return
 
     for file in args.files:
-        with open(file, "r") as f:
-            process_file(args, columns, f)
+        try:
+            with open(file, "r") as f:
+                process_file(args, columns, f)
+        except FileNotFoundError:
+            sys.exit(f"Error: file '{file}' not found")
+        except PermissionError:
+            sys.exit(f"Error: open '{file}': permission denied")
+        except OSError as e:
+            sys.exit(str(e))
+        except BaseException as e:  # noqa: BLE001
+            sys.exit(str(e))
 
 
 def parse_columns(columns):

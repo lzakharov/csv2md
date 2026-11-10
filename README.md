@@ -19,7 +19,7 @@ pip install .
 
 ### Requirements
 
-- Python 3.9 or later. See https://www.python.org/getit/
+- Python 3.10 or later. See https://www.python.org/getit/
 
 ## Usage
 
