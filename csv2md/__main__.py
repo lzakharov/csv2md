@@ -76,9 +76,16 @@ def main():
         process_file(args, columns, sys.stdin)
         return
 
+    exit_code = 0
     for file in args.files:
-        with open(file, "r") as f:
-            process_file(args, columns, f)
+        try:
+            with open(file, "r") as f:
+                process_file(args, columns, f)
+        except OSError as e:
+            print(f"{file}: {e.strerror or e}", file=sys.stderr)
+            exit_code = 1
+    if exit_code:
+        sys.exit(exit_code)
 
 
 def parse_columns(columns):
