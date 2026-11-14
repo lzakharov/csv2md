@@ -97,6 +97,7 @@ To view help run `csv2md -h`:
 usage: csv2md [-h] [-d DELIMITER] [-q QUOTECHAR] [-C COLUMNS]
               [-c [CENTER_ALIGNED_COLUMNS ...]]
               [-r [RIGHT_ALIGNED_COLUMNS ...]] [-H]
+              [--newline-replacement NEWLINE_REPLACEMENT]
               [CSV_FILE ...]
 
 Parse CSV files into Markdown tables.
@@ -118,9 +119,12 @@ options:
                         column numbers with center alignment (from zero)
   -r [RIGHT_ALIGNED_COLUMNS ...], --right-aligned-columns [RIGHT_ALIGNED_COLUMNS ...]
                         column numbers with right alignment (from zero)
-  -H, --no-header-row   specify that the input CSV file has no header row.
+  -H, --no-header-row   specify that the input CSV has no header row.
                         Will create default headers in Excel format
                         (a,b,c,...)
+  --newline-replacement NEWLINE_REPLACEMENT
+                        replace newlines ('\n' and '\r\n') in cells with this
+                        string. Use '&#10;' for renderers that sanitize HTML
 ```
 
 ## Running Tests
