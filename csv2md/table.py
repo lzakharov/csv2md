@@ -13,13 +13,14 @@ class Table:
         center_aligned_columns=None,
         right_aligned_columns=None,
         no_header_row=False,
+        newline_replacement="<br>",
     ):
         if len(self.cells) == 0:
             return ""
 
         def format_cell(cell):
-            cell = cell.replace("\r\n", "<br>")
-            cell = cell.replace("\n", "<br>")
+            cell = cell.replace("\r\n", newline_replacement)
+            cell = cell.replace("\n", newline_replacement)
             return cell.replace("|", r"\|")
 
         cells = [[format_cell(cell) for cell in row] for row in self.cells]

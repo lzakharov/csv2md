@@ -65,6 +65,13 @@ def main():
         action="store_true",
         help="specify that the input CSV file has no header row. Will create default headers in Excel format (a,b,c,...)",
     )
+    parser.add_argument(
+        "--newline-replacement",
+        dest="newline_replacement",
+        default="<br>",
+        help=r"replace newlines ('\n' and '\r\n') in cells with this string. "
+        r"Use '&#10;' for renderers that sanitize HTML",
+    )
     args = parser.parse_args()
 
     try:
@@ -121,6 +128,7 @@ def process_file(args, columns, file):
             args.center_aligned_columns,
             args.right_aligned_columns,
             args.no_header_row,
+            args.newline_replacement,
         )
     )
 

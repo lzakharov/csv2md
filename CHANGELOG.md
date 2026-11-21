@@ -1,5 +1,7 @@
 # Unreleased
 
+* Add `--newline-replacement` option to customize newline replacement in cells
+
 # 1.8.0 (November 10, 2026)
 
 * Migrate from `setup.py` to Poetry (`pyproject.toml`)
