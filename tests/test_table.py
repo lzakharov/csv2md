@@ -83,6 +83,30 @@ cells_with_narrow_columns = [
     ["5", "6", "7", "8"],
 ]
 
+cells_with_ragged_rows = [
+    ["region", "note", "units"],
+    ["north", "steady", "10"],
+    ["south", "spike", "20", "EXTRA"],
+    ["east", "flat"],
+]
+
+cells_with_short_row_in_middle = [
+    ["abc", "def", "ghi"],
+    ["j", "k"],
+    ["l", "m", "n"],
+]
+
+cells_with_short_header = [
+    ["one"],
+    ["a", "bb"],
+    ["ccc", "dddd"],
+]
+
+cells_with_extra_field = [
+    ["a", "b"],
+    ["1", "2", "EXTRA"],
+]
+
 normal_md = (
     "| year | make  | model                      | description                           | price   |\n"
     "| ---- | ----- | -------------------------- | ------------------------------------- | ------- |\n"
@@ -138,6 +162,26 @@ md_with_narrow_columns_and_alignment = (
     "| 1   | 2 | 3  | 4 |\n| :-: | - | -: | - |\n| 5   | 6 | 7  | 8 |"
 )
 
+md_with_ragged_rows = (
+    "| region | note   | units |       |\n"
+    "| ------ | ------ | ----- | ----- |\n"
+    "| north  | steady | 10    |       |\n"
+    "| south  | spike  | 20    | EXTRA |\n"
+    "| east   | flat   |       |       |"
+)
+
+md_with_short_row_in_middle = (
+    "| abc | def | ghi |\n| --- | --- | --- |\n| j   | k   |     |\n| l   | m   | n   |"
+)
+
+md_with_short_header = "| one |      |\n| --- | ---- |\n| a   | bb   |\n| ccc | dddd |"
+
+md_with_extra_field = "| a | b |       |\n| - | - | ----- |\n| 1 | 2 | EXTRA |"
+
+md_with_default_columns_and_extra_field = (
+    "| a | b | c     |\n| - | - | ----- |\n| a | b |       |\n| 1 | 2 | EXTRA |"
+)
+
 
 class TestTable(TestCase):
     def test_markdown_empty_table(self):
@@ -186,6 +230,41 @@ class TestTable(TestCase):
         expected = md_with_flatten_newlines_in_cells
         table = Table(cells_with_newlines)
         actual = table.markdown(newline_replacement=" ")
+        self.assertEqual(expected, actual)
+
+    def test_markdown_with_ragged_rows(self):
+        expected = md_with_ragged_rows
+        table = Table(cells_with_ragged_rows)
+        actual = table.markdown()
+        self.assertEqual(expected, actual)
+
+    def test_widths_with_ragged_rows(self):
+        expected = [6, 6, 5, 5]
+        table = Table(cells_with_ragged_rows)
+        self.assertEqual(expected, table.widths)
+
+    def test_markdown_with_short_row_in_middle(self):
+        expected = md_with_short_row_in_middle
+        table = Table(cells_with_short_row_in_middle)
+        actual = table.markdown()
+        self.assertEqual(expected, actual)
+
+    def test_markdown_with_short_header(self):
+        expected = md_with_short_header
+        table = Table(cells_with_short_header)
+        actual = table.markdown()
+        self.assertEqual(expected, actual)
+
+    def test_markdown_with_extra_field(self):
+        expected = md_with_extra_field
+        table = Table(cells_with_extra_field)
+        actual = table.markdown()
+        self.assertEqual(expected, actual)
+
+    def test_markdown_with_default_columns_and_extra_field(self):
+        expected = md_with_default_columns_and_extra_field
+        table = Table(cells_with_extra_field)
+        actual = table.markdown(no_header_row=True)
         self.assertEqual(expected, actual)
 
     def test_parse_csv(self):
