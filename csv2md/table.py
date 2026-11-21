@@ -33,6 +33,9 @@ class Table:
                 widths[column] = max(widths[column], 3)  # :-:
 
         def ljust_row(row):
+            row = list(row)
+            if row:
+                row += [""] * (len(widths) - len(row))
             return [cell.ljust(width) for cell, width in zip(row, widths)]
 
         def format_row(row):
@@ -49,8 +52,9 @@ class Table:
                 separators[column] = ":" + ("-" * (widths[column] - 2)) + ":"
 
         if no_header_row:
-            width = len(cells[0])
-            rows.insert(0, format_row(ljust_row(self.make_default_headers(width))))
+            rows.insert(
+                0, format_row(ljust_row(self.make_default_headers(len(widths))))
+            )
 
         rows.insert(1, format_row(separators))
 
@@ -58,7 +62,11 @@ class Table:
 
     @staticmethod
     def __widths(cells):
-        return list(map(max, zip(*[list(map(len, row)) for row in cells if row])))
+        widths = [0] * max(map(len, cells), default=0)
+        for row in cells:
+            for i, cell in enumerate(row):
+                widths[i] = max(widths[i], len(cell))
+        return widths
 
     @staticmethod
     def parse_csv(file, delimiter=",", quotechar='"', columns=None):

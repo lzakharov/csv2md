@@ -1,6 +1,7 @@
 # Unreleased
 
 * Add `--newline-replacement` option to customize newline replacement in cells
+* Fix column loss on ragged CSV input: pad short rows with empty cells instead of sizing columns by the narrowest row
 
 # 1.8.0 (November 10, 2026)
 
